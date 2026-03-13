@@ -1,0 +1,48 @@
+{
+	"name": "pict-template-preprocessor",
+	"version": "0.0.1",
+	"description": "Pict Template Preprocessor - compiles templates into cached segment arrays and builds expression dependency graphs",
+	"main": "source/Pict-Template-Preprocessor.js",
+	"scripts": {
+		"start": "node source/Pict-Template-Preprocessor.js",
+		"test": "npx quack test",
+		"tests": "npx quack test -g",
+		"coverage": "npx quack coverage",
+		"build": "npx quack build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/stevenvelozo/pict-template-preprocessor.git"
+	},
+	"author": "steven velozo <steven@velozo.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/stevenvelozo/pict-template-preprocessor/issues"
+	},
+	"homepage": "https://github.com/stevenvelozo/pict-template-preprocessor#readme",
+	"devDependencies": {
+		"pict": "^1.0.348",
+		"quackage": "^1.0.59"
+	},
+	"mocha": {
+		"diff": true,
+		"extension": [
+			"js"
+		],
+		"package": "./package.json",
+		"reporter": "spec",
+		"slow": "75",
+		"timeout": "5000",
+		"ui": "tdd",
+		"watch-files": [
+			"source/**/*.js",
+			"test/**/*.js"
+		],
+		"watch-ignore": [
+			"lib/vendor"
+		]
+	},
+	"dependencies": {
+		"fable-serviceproviderbase": "^3.0.19"
+	}
+}
