@@ -369,7 +369,9 @@ class PictTemplatePreprocessor extends libFableServiceBase
 				{
 					tmpResult = tmpLeaf.Parse(tmpSegment.Hash, pData, tmpDataContext, pScope, pState);
 				}
-				tmpOutput += (tmpResult != null) ? tmpResult : '';
+				// Direct concatenation matches original Pict StringParser behavior
+				// (e.g., undefined → "undefined", null → "null")
+				tmpOutput += tmpResult;
 			}
 		}
 
@@ -427,7 +429,10 @@ class PictTemplatePreprocessor extends libFableServiceBase
 									{
 										this.log.info(`Preprocessor ERROR: Async template error parsing ${tmpSegment.Tag}: ${pError}`);
 									}
-									tmpOutputParts[tmpIndex] = (pAsyncOutput != null) ? pAsyncOutput : '';
+									// Force string coercion to match original Pict concatenation behavior
+									// (Array.join swallows undefined/null, but the original parser
+									// produces "undefined"/"null" via string concatenation)
+									tmpOutputParts[tmpIndex] = '' + pAsyncOutput;
 									return fStepCallback();
 								}, tmpDataContext, pScope, pState);
 						}
@@ -442,7 +447,8 @@ class PictTemplatePreprocessor extends libFableServiceBase
 							{
 								tmpResult = tmpLeaf.Parse(tmpSegment.Hash, pData, tmpDataContext, pScope, pState);
 							}
-							tmpOutputParts[tmpIndex] = (tmpResult != null) ? tmpResult : '';
+							// Force string coercion to match original Pict concatenation behavior
+							tmpOutputParts[tmpIndex] = '' + tmpResult;
 							return fStepCallback();
 						}
 					});
