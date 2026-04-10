@@ -1,4 +1,4 @@
-# Pict Template Preprocessor <small>0</small>
+# Pict Template Preprocessor
 
 > Compile-once, execute-many template optimization with dependency graphing and entity batch prefetch
 
